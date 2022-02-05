@@ -22,6 +22,7 @@ function mostrarAumento()
     
     descuento = importe * porcentaje;
 	resultado = importe - descuento;
+	
 	mostrarMensaje = "usted compró un " + nombreProducto + " con " + sacarPorcentaje + "% de descuento, el precio final es: " + resultado;
 
 	document.getElementById("txtIdResultado").value = resultado;
