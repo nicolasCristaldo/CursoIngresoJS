@@ -1,7 +1,13 @@
+// Nicolás Cristaldo - if ejercicio 2
 function mostrar()
 {
-	//tomo la edad  
-	alert("ok");
+    var edadIngresada;
+
+    edadIngresada = parseInt(document.getElementById("txtIdEdad").value);
+
+    if(edadIngresada >= 18){
+    	alert("mayor de edad");
+    }
 	
 
 }//FIN DE LA FUNCIÓN
