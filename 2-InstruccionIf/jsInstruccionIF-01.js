@@ -2,7 +2,7 @@
 function mostrar()
 {
 	//declaro variable
-	var edadIngresada;
+	let edadIngresada;
 
 	//tomo la edad  
 
