@@ -1,7 +1,7 @@
 // Nicolás Cristaldo - if ejercicio 2
 function mostrar()
 {
-    var edadIngresada;
+    let edadIngresada;
 
     edadIngresada = parseInt(document.getElementById("txtIdEdad").value);
 
