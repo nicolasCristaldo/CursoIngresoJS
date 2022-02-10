@@ -1,3 +1,4 @@
+// Nicolás Cristaldo - if ejercicio 6
 function mostrar()
 {
 	let edad;
