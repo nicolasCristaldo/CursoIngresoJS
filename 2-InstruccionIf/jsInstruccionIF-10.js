@@ -1,6 +1,19 @@
+// Nicolás Cristaldo - if ejercicio 10
 function mostrar()
 {
-	//Genero el número RANDOM entre 1 y 10 
-	alert("ok");
+	let numero;
+	let maximo = 10;
+	let minimo = 1;
 
+	numero = Math.round(Math.random() * (maximo - minimo) + minimo);
+
+	if(numero >= 9){
+		alert(numero + ", EXCELENTE");
+	}
+	else if(numero >= 4){
+		alert(numero + ", APROBÓ");
+	}
+	else{
+		alert(numero + ", Vamos, la proxima se puede");
+	}
 }//FIN DE LA FUNCIÓN
