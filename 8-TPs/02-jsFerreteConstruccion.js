@@ -20,9 +20,9 @@ function Rectangulo ()
 	ancho = parseFloat(document.getElementById("txtIdAncho").value);
 
 	perimetro = (largo * 2) + (ancho * 2);
-	cantidadAlambre = perimetro / 3;
+	cantidadAlambre = perimetro * 3;
 
-	mostrarMensaje = "se tienen que comprar 3 hilos de alambre de " + cantidadAlambre.toFixed(2) + " metros cada uno."
+	mostrarMensaje = "se tienen que comprar " + cantidadAlambre + " metros de alambre" 
 
 	alert(mostrarMensaje);
 
@@ -37,9 +37,9 @@ function Circulo ()
 	radio = parseFloat(document.getElementById("txtIdRadio").value);
 
 	perimetro = 2 * 3.14 * radio;
-	cantidadAlambre = perimetro / 3;
+	cantidadAlambre = perimetro * 3;
 
-	mostrarMensaje = "se tienen que comprar 3 hilos de alambre de " + cantidadAlambre.toFixed(2) + " metros cada uno."
+	mostrarMensaje = "se tienen que comprar " + cantidadAlambre + " metros de alambre" 
 
 	alert(mostrarMensaje);
 
