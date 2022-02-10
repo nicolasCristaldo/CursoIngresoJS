@@ -22,7 +22,7 @@ function Rectangulo ()
 	perimetro = (largo * 2) + (ancho * 2);
 	cantidadAlambre = perimetro * 3;
 
-	mostrarMensaje = "se tienen que comprar " + cantidadAlambre + " metros de alambre" 
+	mostrarMensaje = "se tienen que comprar " + cantidadAlambre + " metros de alambre";
 
 	alert(mostrarMensaje);
 
@@ -39,7 +39,7 @@ function Circulo ()
 	perimetro = 2 * 3.14 * radio;
 	cantidadAlambre = perimetro * 3;
 
-	mostrarMensaje = "se tienen que comprar " + cantidadAlambre + " metros de alambre" 
+	mostrarMensaje = "se tienen que comprar " + cantidadAlambre + " metros de alambre"; 
 
 	alert(mostrarMensaje);
 
