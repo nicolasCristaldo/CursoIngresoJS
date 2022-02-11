@@ -11,7 +11,7 @@ function FahrenheitCentigrados ()
 
 	gradosFahrenheit = parseFloat(document.getElementById("txtIdTemperatura").value);
 
-	gradosCentigrados = gradosFahrenheit - 32;
+	gradosCentigrados = (gradosFahrenheit - 32) * 5 / 9;
 
 	mensajeaMostrar = gradosFahrenheit + " grados fahrenheit son " + gradosCentigrados + " grados centígrados";
 
@@ -26,7 +26,7 @@ function CentigradosFahrenheit ()
 
 	gradosCentigrados = parseFloat(document.getElementById("txtIdTemperatura").value);
 
-	gradosFahrenheit = gradosCentigrados + 32;
+	gradosFahrenheit = (gradosCentigrados * (9 / 5)) + 32;
 
 	mensajeaMostrar = gradosCentigrados + " grados centígrados son " + gradosFahrenheit + " grados fahrenheit";
 
