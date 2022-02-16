@@ -20,11 +20,11 @@ function mostrar()
 	porcentaje10 = precioBase * 0.1;
 	porcentaje20 = precioBase * 0.2;
 
-	mensaje = precioBase + "$ a pagar";
-	mensajeDescuento10 = precioBase - porcentaje10 + "$ a pagar";
-	mensajeDescuento20 = precioBase - porcentaje20 + "$ a pagar";
-    mensajeAumento10 = precioBase + porcentaje10 + "$ a pagar";
-    mensajeAumento20 = precioBase + porcentaje20 + "$ a pagar";
+	 mensaje = precioBase + "$ a pagar";
+	 mensajeDescuento10 = precioBase - porcentaje10 + "$ a pagar";
+	 mensajeDescuento20 = precioBase - porcentaje20 + "$ a pagar";
+     mensajeAumento10 = precioBase + porcentaje10 + "$ a pagar";
+     mensajeAumento20 = precioBase + porcentaje20 + "$ a pagar";
 
     if(estacion == "Invierno"){
 		switch(destino){
