@@ -9,9 +9,15 @@ function mostrar()
 	do{
 		sexoIngresado = prompt("ingrese f o m segun su sexo");
 
-	}while(sexoIngresado != f || sexoIngresado != m);
+	}while(!(sexoIngresado == "f" || sexoIngresado == "m"));
 
-
-	document.getElementById("txtIdSexo").value = sexoIngresado;
+	switch(sexoIngresado){
+		case "f":
+			document.getElementById("txtIdSexo").value = "Femenino";
+			break;
+		default: 
+			document.getElementById("txtIdSexo").value = "Masculino";
+			break;
+	}
 
 }//FIN DE LA FUNCIÓN
