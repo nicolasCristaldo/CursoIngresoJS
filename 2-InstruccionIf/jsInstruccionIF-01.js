@@ -1,16 +1,30 @@
-// Nicolás Cristaldo - if ejercicio 1
+// Nicolás Cristaldo - if ejercicio 1 v2
 function mostrar()
 {
-	//declaro variable
-	let edadIngresada;
+	let distancia;
+	let tiempo;
+	let kilometrosPorHora;
 
-	//tomo la edad  
+	distancia = parseFloat(prompt("ingrese los kilometros recorridos"));
+	tiempo = parseFloat(prompt("ingrese las horas que tardó"));
 
-    edadIngresada = parseInt(document.getElementById("txtIdEdad").value);
+	kilometrosPorHora = distancia / tiempo;
 
-    if(edadIngresada == 15){
-       alert("niña bonita");
+	if(kilometrosPorHora <= 60){
+		alert("muy lento");
+	}
+	else if(kilometrosPorHora <= 80){
+		alert("lento");
+	}
+    else if(kilometrosPorHora <= 100){
+    	alert("buen ritmo");
     }
-	
+    else if(kilometrosPorHora <= 120){
+    	alert("ahi de la ley");
+    }
+    else{
+    	alert("eso no se hace");
+    }
 
+    document.getElementById("txtIdEdad").value = kilometrosPorHora.toFixed(2) + "km/h";
 }//FIN DE LA FUNCIÓN
