@@ -7,30 +7,30 @@ function mostrar()
 	let respuesta;
 	let numeroMax;
 	let numeroMin;
+	let flag = 1;
 
-	numero = parseFloat(prompt("ingrese un numero"));
-	while(isNaN(numero) == true){
-		numero = parseFloat(prompt("por favor, ingrese un NUMERO"));
-	}
-
-	numeroMax = numero;
-	numeroMin = numero;
-
-	respuesta = prompt("ingresa otro? s/n");
-
-	while(respuesta == "s"){
+	do{
 		numero = parseFloat(prompt("ingrese un numero"));
 		while(isNaN(numero) == true){
-			numero = parseFloat(prompt("por favor, ingrese un NUMERO"));
+			numero = parseFloat(prompt("no se ingreso un numero"));
 		}
+
+		if(flag == 1){
+			numeroMax = numero;
+			numeroMin = numero;
+			flag = 0;
+		}
+
 		if(numero > numeroMax){
 			numeroMax = numero;
 		}
 		else if(numero < numeroMin){
 			numeroMin = numero;
 		}
-		respuesta = prompt("ingresa otro? s/n");
-	}
+
+		respuesta = prompt("desea continuar? s/n");
+	}while(respuesta == "s");
+	
 
 	document.getElementById("txtIdMaximo").value = numeroMax; 
 	document.getElementById("txtIdMinimo").value = numeroMin;
