@@ -1,30 +1,33 @@
-// Nicolás Cristaldo - if ejercicio 1 v2
+// Nicolás Cristaldo - if ejercicio 1 v3
 function mostrar()
 {
-	let distancia;
-	let tiempo;
-	let kilometrosPorHora;
+	let peso;
+	let altura;
+	let imc;
 
-	distancia = parseFloat(prompt("ingrese los kilometros recorridos"));
-	tiempo = parseFloat(prompt("ingrese las horas que tardó"));
+	peso = parseFloat(prompt("ingrese su peso"));
+	altura = parseFloat(prompt("ingrese su altura"));
 
-	kilometrosPorHora = distancia / tiempo;
+	imc = peso / (altura * altura);
 
-	if(kilometrosPorHora <= 60){
-		alert("muy lento");
+	if(imc <= 18.5){
+		alert("bajo peso");
 	}
-	else if(kilometrosPorHora <= 80){
-		alert("lento");
+	else if(imc <= 24.9){
+		alert("peso normal");
 	}
-    else if(kilometrosPorHora <= 100){
-    	alert("buen ritmo");
+    else if(imc <= 26.9){
+    	alert("pre obesidad");
     }
-    else if(kilometrosPorHora <= 120){
-    	alert("ahi de la ley");
+    else if(imc <= 29.9){
+    	alert("obesidad I");
+    }
+    else if(imc <= 34.9){
+    	alert("obesidad II");
     }
     else{
-    	alert("eso no se hace");
+    	alert("obesidad III");
     }
 
-    document.getElementById("txtIdEdad").value = kilometrosPorHora.toFixed(2) + "km/h";
+    document.getElementById("txtIdEdad").value = imc.toFixed(2);
 }//FIN DE LA FUNCIÓN
