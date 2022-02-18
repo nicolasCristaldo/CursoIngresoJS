@@ -7,7 +7,7 @@ B.	Si compra 5  lamparitas bajo consumo marca "ArgentinaLuz" se hace un descuent
 C.	Si compra 4  lamparitas bajo consumo marca "ArgentinaLuz" o “FelipeLamparas” se hace
  un descuento del 25 % y si es de otra marca el descuento es del 20%.
 D.	Si compra 3  lamparitas bajo consumo marca "ArgentinaLuz"  el descuento es del 15%,
- si es  “FelipeLamparas” se hace un descuento del 10 % y si es de otra marca un 5%.
+ si es  FelipeLamparas se hace un descuento del 10 % y si es de otra marca un 5%.
 E.	Si el importe final con descuento suma más de $120  se debe sumar un 10% de ingresos 
 brutos en informar del impuesto con el siguiente mensaje:
  ”Usted pago X de IIBB.”, siendo X el impuesto que se pagó. 
@@ -18,63 +18,73 @@ brutos en informar del impuesto con el siguiente mensaje:
   	let cantidadLamparas;
   	let marca;
   	let precioLamparas;
-  	let importeFinal;
-  	let mensajeAMostrar;
+    const IIBB = 0.1;
+    let descuento = 0;
 
   	cantidadLamparas = parseInt(document.getElementById("txtIdCantidad").value);
   	marca = document.getElementById("Marca").value;
-  	importeFinal = parseFloat(document.getElementById("txtIdprecioDescuento").value);
+
   	precioLamparas = cantidadLamparas * 35;
 
-  	mensajeAMostrar = "Usted pagó " +  (importeFinal * 0.1) + "$ de IIBB";
+    switch(cantidadLamparas){
+      case 1:
+      case 2:
+        descuento = 0;
+        break;
+      case 3:
+        switch(marca){
+          case "ArgentinaLuz":
+            descuento = 0.15;
+            break;
+          case "FelipeLamparas":
+            descuento = 0.1;
+            break;
+          default:
+            descuento = 0.05;
+            break;
+        }
+        break;
+      case 4:
+        switch(marca){
+          case "ArgentinaLuz":
+          case "FelipeLamparas":
+            descuento = 0.25;
+            break;
+          default:
+            descuento = 0.2;
+            break;
+        }
+        break;
+      case 5:
+        switch(marca){
+          case "ArgentinaLuz":
+            descuento = 0.4;
+            break;
+          default:
+            descuento = 0.3;
+            break;
+        }
+        break;
+      default:
+        descuento = 0.5;
+        break;
+    }
+    
+    switch(descuento){
+      case 0:
+        descuento = 0;
+        break;
+      default:
+        precioLamparas = precioLamparas - precioLamparas * descuento;
+        break;
+    }
 
-  	if(cantidadLamparas >= 3){
-  		switch(cantidadLamparas){
-  			case 3:  
-  				switch(marca){
-  					case "ArgentinaLuz":
-   						document.getElementById("txtIdprecioDescuento").value = precioLamparas - precioLamparas * 0.15;
-  						break;
-  					case "FelipeLamparas":
-  						document.getElementById("txtIdprecioDescuento").value = precioLamparas - precioLamparas * 0.1;
-  						break;
-  					default:
-  						document.getElementById("txtIdprecioDescuento").value = precioLamparas - precioLamparas * 0.05;
-  				}
-  					break;
-  			case 4:
-  				switch(marca){
-  					case "ArgentinaLuz":
-  					case "FelipeLamparas":
-  						document.getElementById("txtIdprecioDescuento").value = precioLamparas - precioLamparas * 0.25;
-  						break;
-  					default:
-  						document.getElementById("txtIdprecioDescuento").value = precioLamparas - precioLamparas * 0.2;
-  						break;
-  				}
-  					break;
-  			case 5:
-  				switch(marca){
-  					case "ArgentinaLuz":
-  						document.getElementById("txtIdprecioDescuento").value = precioLamparas - precioLamparas * 0.4;
-  						break;
-  					default:
-  						document.getElementById("txtIdprecioDescuento").value = precioLamparas - precioLamparas * 0.3;
-  						break;
-  				}
-  					break;
-  			default:
-  					document.getElementById("txtIdprecioDescuento").value = precioLamparas - precioLamparas * 0.5;
-  						break;
-  				    break;
-  		}
-  	}
-  	else if(cantidadLamparas >= 1){
-  		document.getElementById("txtIdprecioDescuento").value = precioLamparas;
-  	}
+    switch(precioLamparas > 120){
+      case true:
+        precioLamparas = precioLamparas + precioLamparas * IIBB;
+        alert("usted pagó " + (precioLamparas * IIBB).toFixed(2) + "$ de IIBB");
+        break;
+    }
 
-  	if (importeFinal > 120){
-  		document.getElementById("txtIdprecioDescuento").value = importeFinal + importeFinal * 0.1;
-  		alert(mensajeAMostrar);
-  	}
+    document.getElementById("txtIdprecioDescuento").value = precioLamparas;
 }
