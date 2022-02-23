@@ -5,7 +5,7 @@ function mostrar()
 	let pares = 0;
 
 	numero = parseInt(prompt("ingrese un numero"));
-	if(isNaN(numero) == true){
+	while(isNaN(numero) == true){
 		numero = parseInt(prompt("error, no ingreso un numero"));
 	}
 
@@ -25,5 +25,5 @@ function mostrar()
 			}
 		}
 	}
-	alert("cantidaad de pares: " + pares);
+	alert("cantidad de pares: " + pares);
 }//FIN DE LA FUNCIÓN
