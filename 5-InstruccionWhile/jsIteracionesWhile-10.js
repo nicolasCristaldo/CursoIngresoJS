@@ -23,17 +23,6 @@ function mostrar()
 		if(flag == 1){
 			numeroMax = numero;
 			numeroMin = numero;
-
-			if(numero < 0){
-				mayorNegativo = numero;
-				flag2 = 0;
-			}
-
-			if((numero % 2) == 0){
-				menorPar = numero;
-				flag3 = 0;
-			}
-
 			flag = 0;
 		}
 
