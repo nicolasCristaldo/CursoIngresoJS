@@ -1,63 +1,79 @@
 /* Nicolas cristaldo - while 10
-Al presionar el botón pedir  números  
-hasta que el usuario quiera, mostrar:
-1-Suma de los negativos.
-2-Suma de los positivos.
-3-Cantidad de positivos.
-4-Cantidad de negativos.
-5-Cantidad de ceros.
-6-Cantidad de números pares.
-7-Promedio de positivos.
-8-Promedios de negativos.
-9-Diferencia entre positivos y negativos, (positvos-negativos). */
+Al presionar el botón pedir números hasta que el usuario quiera, mostrar por document.write:
+ el número máximo y el número mínimo ingresado, el menor de los pares 
+ y el mayor de los negativos ...solo si hay */
 function mostrar()
-{
+{	
 	let numero;
-	let sumaNegativos = 0;
-	let sumaPositivos = 0;
-	let contNegativos = 0;
-	let contPositivos = 0;
-	let contCeros = 0;
-	let contPares = 0;
-	let promedioPositivos;
-	let promedioNegativos;
-	let diferencia;
 	let respuesta;
+	let numeroMax;
+	let numeroMin;
+	let menorPar;
+	let mayorNegativo;
+	let flag = 1;
+	let flag2 = 1;
+	let flag3 = 1;
 
 	do{
 		numero = parseFloat(prompt("ingrese un numero"));
 		while(isNaN(numero) == true){
-			numero = parseFloat(prompt("por favor, ingrese un numero"));
-		}
-		if(numero < 0){
-			contNegativos++;
-			sumaNegativos = sumaNegativos + (numero);
-		}
-		else if(numero == 0){
-			contCeros++;
-		}
-		else{
-			contPositivos++;
-			sumaPositivos = sumaPositivos + numero;
+			numero = parseFloat(prompt("no se ingreso un numero"));
 		}
 
-		if((numero % 2) == 0){
-			contPares++;
+		if(flag == 1){
+			numeroMax = numero;
+			numeroMin = numero;
+
+			if(numero < 0){
+				mayorNegativo = numero;
+				flag2 = 0;
+			}
+
+			if((numero % 2) == 0){
+				menorPar = numero;
+				flag3 = 0;
+			}
+
+			flag = 0;
 		}
+
+		if(flag2 == 1 && numero < 0){
+			mayorNegativo = numero;
+			flag2 = 0;
+		}
+
+		if(flag3 == 1 && (numero % 2) == 0){
+			menorPar = numero;
+			flag3 = 0;
+		}
+
+		if(numero > numeroMax){
+			numeroMax = numero;
+		}
+		else if(numero < numeroMin){
+			numeroMin = numero;
+		}
+
+		if(numero < 0 && mayorNegativo < numero){
+			mayorNegativo = numero;
+		}
+
+		if((numero % 2) == 0 && numero < menorPar){
+				menorPar = numero;
+			}
+
 		respuesta = prompt("desea continuar? s/n");
 	}while(respuesta == "s");
 
-	promedioNegativos = sumaNegativos / contNegativos;
-	promedioPositivos = sumaPositivos / contPositivos;
-	diferencia = sumaPositivos - sumaNegativos;
+	document.write("numero maximo: " + numeroMax + "<br>");
+	document.write("numero minimo: " + numeroMin + "<br>");
 
-	document.write("la suma de los negativos es: " + sumaNegativos + "<br>");
-	document.write("la suma de los positivos es: " + sumaPositivos + "<br>");
-	document.write("la cantidad de negativos es: " + contNegativos + "<br>");
-	document.write("la cantidad de positivos es: " + contPositivos + "<br>");
-	document.write("la cantidad de ceros es: " + contCeros + "<br>");
-	document.write("la cantidad de numeros pares es: " + contPares + "<br>");
-	document.write("el promedio de los negativos es: " + promedioNegativos + "<br>");
-	document.write("el promedio de los positivos es: " + promedioPositivos + "<br>");
-	document.write("la diferencia entre positivos y negativos es: " + diferencia + "<br>");
+	if(menorPar != undefined){
+		document.write("menor de los pares: " + menorPar + "<br>");
+	}
+	
+	if(mayorNegativo != undefined){
+		document.write("mayor de los negativos: " + mayorNegativo);
+	}
+
 }//FIN DE LA FUNCIÓN
