@@ -30,7 +30,7 @@ function mostrar()
 
 	do{ 
 	    do{
-		tipo = prompt("ingrese el tipo del producto (arena, cal o cemento)");
+			tipo = prompt("ingrese el tipo del producto (arena, cal o cemento)");
 		}while(!(tipo == "arena" || tipo == "cemento" || tipo == "cal"));
 
 		do{
@@ -41,7 +41,7 @@ function mostrar()
 			precio = parseFloat(prompt("ingrese el precio"));
 		}while(isNaN(precio) == true || precio <= 0);
 
-		importeTotalBruto = importeTotalBruto + precio;
+		importeTotalBruto = importeTotalBruto + bolsas * precio;
 		cantidadBolsas = cantidadBolsas + bolsas;
 
 		if(precio > mayorPrecio){
@@ -81,14 +81,11 @@ function mostrar()
 	if(cantBolsasCemento > cantBolsasArena && cantBolsasCemento > cantBolsasCal){
 		alert("el tipo con mas cantidad de bolsas es cemento");
 	}
-	else if(cantBolsasArena > cantBolsasCemento && cantBolsasArena > cantBolsasCal){
-		alert("el tipo con mas cantidad de bolsas es arena");
-	}
-	else if(cantBolsasCal > cantBolsasArena && cantBolsasCal > cantBolsasCemento){
+	else if(cantBolsasCal > cantBolsasArena){
 		alert("el tipo con mas cantidad de bolsas es cal");
 	}
 	else{
-		alert("no hay tipo con mas cantidad de bolsas");
+		alert("el tipo con mas cantidad de bolsas es arena");
 	}
 
 	alert("tipo mas caro: " + tipoMayorPrecio);
