@@ -1,92 +1,150 @@
-/*nicolas cristaldo parcial 2020 2
-Realizar el algoritmo que permita ingresar los datos de una compra productos de la construccion,
- hasta que el cliente quiera:
-Tipo validad("arena";"cal";"cemento")
-Cantidad de bolsas,
-Precio por bolsa (más de cero ),
-
-Si compro más de 10 bolsas en total tenes 15% de descuento sobre el total a pagar.
-Si compro más de 30 bolsas en total tenes 25% de descuento sobre el total a pagar.
-a) El importe total a pagar , bruto sin descuento y...
-b) el importe total a pagar con descuento(solo si corresponde)
-d) Informar el tipo con mas cantidad de bolsas.
-f) El tipo mas caro*/
+/*nicolas cristaldo simil parcial 2
+El alumno deberá ingresar:
+Nombre del alumno
+Carrera (Programación, Psicología, Diseño gráfico)
+Estado de la carrera: en curso-abandono-finalizado
+Sexo (femenino-masculino-nobinario)
+Edad (18 o más)
+Nota (entre 1 y 10)
+2. Se desconoce la cantidad de alumnos que se ingresaran.
+3. Se deberán validar los casos resaltados en negrita.
+4. El programa deberá informar a través del documento html:
+A. Cantidad total de alumnos de cada carrera.
+B. Cantidad total de mujeres que cursan la carrera de programación
+C. Cantidad de alumnos no binarios.
+D. Promedio de notas de los alumnos finalizantes.
+E. Nombre, sexo y edad del alumno mas viejo en la carrera de psicología.
+F. Nombre, nota y estado de la carrera del mejor alumno no binario que estudia psicología.)
+G. ¿Cuál es la carrera que tiene más alumnos?*/
 function mostrar()
 {
-	let tipo;
-	let bolsas;
-	let cantidadBolsas = 0;
-	let precio;
-	let porcentajeDescuento = 0;
-	let descuento;
-	let importeTotalBruto = 0;
-	let importeTotalDescuento;
-	let cantBolsasArena = 0;
-	let cantBolsasCal = 0;
-	let cantBolsasCemento = 0;
-	let mayorPrecio = -1;
-	let tipoMayorPrecio;
+	let nombre;
+	let carrera;
+	let estadoCarrera;
+	let sexo;
+	let edad;
+	let nota;
+	let totalAlumnos;
+	let mujeresProgramacion = 0;
+	let cantNoBinarios = 0;
+	let promedioFinalizantes;
+	let cantFinalizantes = 0;
+	let contNotasFinalizantes = 0;
 	let respuesta;
+	let nombreMasViejo;
+	let sexoMasViejo;
+	let edadMasViejo;
+	let nombreMejorAlumno;
+	let notaMejorAlumno;
+	let estadoMejorAlumno;
+	let cantAlumnosPsic = 0;
+	let cantAlumnosProg = 0;
+	let cantAlumnosDG = 0; 
+	let flag = 1;
+	let flag2 = 1;
+
 
 	do{ 
 	    do{
-			tipo = prompt("ingrese el tipo del producto (arena, cal o cemento)");
-		}while(!(tipo == "arena" || tipo == "cemento" || tipo == "cal"));
+			nombre = prompt("ingrese su nombre");
+		}while(isNaN(nombre) == false);
 
 		do{
-			bolsas = parseInt(prompt("ingrese cantidad de bolsas"));
-		}while(isNaN(bolsas) == true || bolsas <= 0);
+			carrera = prompt("ingrese la carrera (programación, psicología, diseño gráfico)");
+		}while(!(carrera == "programacion" || carrera == "psicologia" || carrera == "diseño grafico"));
 
 		do{
-			precio = parseFloat(prompt("ingrese el precio"));
-		}while(isNaN(precio) == true || precio <= 0);
+			estadoCarrera = prompt("ingrese el estado de la carrera (en curso, abandono o finalizado)");
+		}while(!(estadoCarrera == "en curso" || estadoCarrera == "abandono" || estadoCarrera == "finalizado"));
 
-		importeTotalBruto = importeTotalBruto + bolsas * precio;
-		cantidadBolsas = cantidadBolsas + bolsas;
+		do{
+			sexo = prompt("ingrese el sexo (femenino, masculino o nobinario)");
+		}while(!(sexo == "femenino" || sexo == "masculino" || sexo == "nobinario"));
 
-		if(precio > mayorPrecio){
-			mayorPrecio = precio;
-			tipoMayorPrecio = tipo;
-		}
+		do{
+			edad = parseInt(prompt("ingrese la edad"));
+		}while(isNaN(edad) == true || edad < 18 || edad > 100);
 
-		switch(tipo){
-			case "cal":
-				cantBolsasCal = cantBolsasCal + bolsas;
+		do{
+			nota = parseInt(prompt("ingrese la nota"));
+		}while(isNaN(nota) == true || nota < 0 || nota > 10);
+
+		switch(carrera){
+			case "programacion":
+				cantAlumnosProg++;
+
+				if(sexo == "femenino"){
+					mujeresProgramacion++;
+				}
 				break;
-			case "arena":
-				cantBolsasArena = cantBolsasArena + bolsas;
+			case "diseño grafico":
+				cantAlumnosDG++;
 				break;
 			default:
-				cantBolsasCemento = cantBolsasCemento + bolsas;
+				cantAlumnosPsic++;
+
+				if(flag = 1){
+					edadMasViejo = edad;
+					nombreMasViejo = nombre;
+					sexoMasViejo = sexo;
+					flag = 0;
+				}
+
+				if(edad > edadMasViejo){
+					edadMasViejo = edad;
+					nombreMasViejo = nombre;
+					sexoMasViejo = sexo;
+				}
+
+				if(flag2 == 1 && sexo == "nobinario"){
+					notaMejorAlumno = nota;
+					nombreMejorAlumno = nombre;
+					estadoMejorAlumno = estadoCarrera;
+					flag2 = 0;
+				}
+
+				if(sexo == "nobinario" && nota > notaMejorAlumno){
+					notaMejorAlumno = nota;
+					nombreMejorAlumno = nombre;
+					estadoMejorAlumno = estadoCarrera;
+				}
+				break;
+		}
+
+		if(sexo == "nobinario"){
+			cantNoBinarios++;
+		}
+
+		if(estado = "finalizado"){
+			cantFinalizantes++;
+			contNotasFinalizantes = contNotasFinalizantes + nota;
 		}
 
 		respuesta = prompt("desea continuar? s/n");
 	}while(respuesta == "s");
 
-	if(cantidadBolsas > 30){
-		porcentajeDescuento = 0.25;
-	}
-	else if(cantidadBolsas > 10){
-		porcentajeDescuento = 0.15;
-	}
+	totalAlumnos = cantAlumnosPsic + cantAlumnosProg + cantAlumnosDG;
 
-	importeTotalDescuento = importeTotalBruto - importeTotalBruto * porcentajeDescuento;
+	promedioFinalizantes = contNotasFinalizantes / cantFinalizantes;
 
-	alert("importe total bruto: " + importeTotalBruto);
-
-	if(porcentajeDescuento != 0){
-		alert("importe total con descuento: " + importeTotalDescuento);
+	if(cantAlumnosProg > cantAlumnosDG && cantAlumnosProg > cantAlumnosPsic){
+		document.write("carrera con mas alumnos: programación" + "<br>");
 	}
-
-	if(cantBolsasCemento > cantBolsasArena && cantBolsasCemento > cantBolsasCal){
-		alert("el tipo con mas cantidad de bolsas es cemento");
-	}
-	else if(cantBolsasCal > cantBolsasArena){
-		alert("el tipo con mas cantidad de bolsas es cal");
-	}
+	else if(cantAlumnosPsic > cantAlumnosDG){
+		document.write("carrera con mas alumnos: psicologia" + "<br>");
+	} 
 	else{
-		alert("el tipo con mas cantidad de bolsas es arena");
+		document.write("carrera con mas alumnos: diseño grafico" + "<br>");
 	}
 
-	alert("tipo mas caro: " + tipoMayorPrecio);
+	document.write("cantidad total de alumnos: " + totalAlumnos + "<br>");
+	document.write("cantidad total de mujeres en programación: " + mujeresProgramacion + "<br>");
+	document.write("cantidad total de alumnos no binarios: " + cantNoBinarios + "<br>");
+	document.write("promedio de notas de alumnos finalizantes: " + promedioFinalizantes + "<br>");
+	document.write("nombre de la persona mas vieja en psicologia: "+ nombreMasViejo + "<br>");
+	document.write("sexo de la persona mas vieja en psicologia: " + sexoMasViejo + "<br>");
+	document.write("edad de la persona mas vieja en psicologia: " + edadMasViejo + "<br>");
+	document.write("nombre del mejor alumno no binario en psicologia: " + nombreMejorAlumno + "<br>");
+	document.write("nota del mejor alumno no binario en psicologia: " + notaMejorAlumno + "<br>");
+	document.write("estado del mejor alumno no binario en psicologia: " + estadoMejorAlumno + "<br>");
 }
