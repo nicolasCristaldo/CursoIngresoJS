@@ -1,82 +1,163 @@
-/*nicolas cristaldo - parcial 2020 3
-En el ingreso a un viaje en avion nos solicitan nombre 
-, edad, sexo("f" o "m") y estado civil("soltero", "casado" o "viudo")y temperatura corporal.
-a) El nombre de la persona con mas temperatura.
-b) Cuantos mayores de edad estan viudos
-c) La cantidad de hombres que hay solteros o viudos.
-d) cuantas personas de la tercera edad( mas de 60 años) , tienen mas de 38 de temperatura
-e) El promedio de edad entre los hombres solteros. */
+/*nicolas cristaldo - simil parcial 3
+pedir el ingreso de 10 mascotas
+validar tipo ( gato , perro , pájaro y otros)solo esos cuatro tipo
+raza , si es perro (pastor, toy, callejero) y si gato 
+(siamés, turco, Peterbald , generico) y si es de tipo "otros" o pájaro
+, pedir solo un texto
+edad entre 1 y 20 para gatos y perros , para "otros" entre 1 y 100 , para pájaro 1 de 50
+nombre ( no se permite solo numero)
+mostrar por cada tipo el nombre del mas viejo , solo si hay de ese tipo
+mostrar que raza de gatos tiene mas animales y el promedio de edad de esta raza*/
 function mostrar()
 {
-	let nombre;
+	let i;
+	let tipo;
+	let raza;
 	let edad;
-	let sexo;
-	let estadoCivil;
-	let temperatura;
-	let temperaturaMax = 0;
-	let nombreTemperaturaMax;
-	let mayoresViudos = 0;
-	let cantHombresSoV = 0;
-	let cantAncianosTempAlta = 0;
-	let promedio;
-	let contEdadSolteros = 0;
-	let cantSolterosHombres = 0;
-	let respuesta;
+	let nombre;
+	let gatoMasViejo;
+	let perroMasViejo;
+	let pajaroMasViejo;
+	let otroMasViejo;
+	let edadMaxGato = -1;
+	let edadMaxPerro = -1;
+	let edadMaxPajaro = -1;
+	let edadMaxOtro = -1;
+	let cantSiameses = 0;
+	let contEdadSiames = 0;
+	let cantTurco = 0;
+	let contEdadTurco = 0;
+	let cantPeterbald = 0;
+	let contEdadPeterbald = 0;
+	let cantGenerico = 0;
+	let contEdadGenerico = 0;
+	let promedioEdad;
 
-	do{
+	for(i = 0; i < 10; i++){
 		do{
-			nombre = prompt("ingrese el nombre");
+			tipo = prompt("ingrese el tipo (gato , perro , pajaro u otro)");
+		}while(!(tipo == "gato" || tipo == "perro" || tipo == "pajaro" || tipo == "otro"));
+
+		do{
+			nombre = prompt("ingrese el nombre de tu mascota");
 		}while(isNaN(nombre) == false);
-		
-		do{
-			edad = parseInt(prompt("ingrese la edad"));
-		}while(isNaN(edad) == true || edad < 0 || edad > 110);
 
-		do{
-			sexo = prompt("ingrese el sexo (f o m)");
-		}while(!(sexo == "f" || sexo == "m"));
+		switch(tipo){
+			case "gato":
+				do{
+					raza = prompt("ingrese la raza (siames, turco, peterbald , generico)");
+				}while(!(raza == "peterbald" || raza == "generico" || raza == "turco" || raza == "siames"));
 
-		do{
-			estadoCivil = prompt("ingrese el estado civil (casado, soltero o viudo)");
-		}while(!(estadoCivil == "casado" || estadoCivil == "soltero" || estadoCivil == "viudo"));
+				do{
+					edad = parseInt(prompt("ingrese la edad"));
+				}while(isNaN(edad) == true || edad < 1 || edad > 20);
 
-		do{
-			temperatura = parseFloat(prompt("ingrese la temperatura"));
-		}while(isNaN(temperatura) == true || temperatura < 30 || temperatura > 44);
+				switch(raza){
+					case "generico":
+						cantGenerico++;
+						contEdadGenerico = contEdadGenerico + edad;
+						break;
+					case "turco":
+						cantTurco++;
+						contEdadTurco = contEdadTurco + edad;
+						break;
+					case "siames":
+						cantSiameses++;
+						contEdadSiames = contEdadSiames + edad;
+						break;
+					default:
+						cantPeterbald++;
+						contEdadPeterbald = cantPeterbald + edad;
+						break;
+				}
 
-		if(temperatura > temperaturaMax){
-			temperaturaMax = temperatura;
-			nombreTemperaturaMax = nombre;
+				if(edad > edadMaxGato){
+					edadMaxGato = edad;
+					gatoMasViejo = nombre;
+				}
+				break;
+			case "perro":
+				do{
+					raza = prompt("ingrese la raza (pastor, toy, callejero)");
+				}while(!(raza == "callejero" || raza == "toy" || raza == "pastor"));
+
+				do{
+					edad = parseInt(prompt("ingrese la edad"));
+				}while(isNaN(edad) == true || edad < 1 || edad > 20);
+
+				if(edad > edadMaxPerro){
+					edadMaxPerro = edad;
+					perroMasViejo = nombre;
+				}
+				break;
+			case "pajaro":
+				do{
+					raza = prompt("ingrese la raza");
+				}while(isNaN(raza) == false);
+				
+				do{
+					edad = parseInt(prompt("ingrese la edad"));
+				}while(isNaN(edad) == true || edad < 1 || edad > 50);
+
+				if(edad > edadMaxPajaro){
+					edadMaxPajaro = edad;
+					pajaroMasViejo = nombre;
+				}
+				break;
+			default:
+				do{
+					raza = prompt("ingrese la raza");
+				}while(isNaN(raza) == false);
+				
+				do{
+					edad = parseInt(prompt("ingrese la edad"));
+				}while(isNaN(edad) == true || edad < 1 || edad > 100);
+
+				if(edad > edadMaxOtro){
+					edadMaxOtro = edad;
+					otroMasViejo = nombre;
+				}
+				break;
 		}
 
-		if(edad > 60 && temperatura > 38){
-			cantAncianosTempAlta++;
-		}
-		
-		if(edad >= 18 && estadoCivil == "viudo"){
-			mayoresViudos++;
-		}
+	}
 
-		if(sexo == "m" && estadoCivil != "casado"){
-			cantHombresSoV++;
+	if(cantSiameses > cantPeterbald && cantSiameses > cantTurco && cantSiameses > cantGenerico){
+		promedioEdad = contEdadSiames / cantSiameses;
+		document.write("raza de gato con mas animales: siames " + "<br>");
+		document.write("promedio edad siames: " + promedioEdad + "<br>");
+	}
+	else if(cantGenerico > cantTurco && cantGenerico > cantPeterbald){
+		promedioEdad = contEdadGenerico / cantGenerico;
+		document.write("raza de gato con mas animales: generico" + "<br>");
+		document.write("promedio edad generico: " + promedioEdad + "<br>");
+	}
+	else if(cantTurco > cantPeterbald){
+		promedioEdad = contEdadTurco / cantTurco;
+		document.write("raza de gato con mas animales: turco" + "<br>");
+		document.write("promedio edad turco: " + promedioEdad + "<br>");
+	} 
+	else{
+		promedioEdad = contEdadPeterbald / cantPeterbald;
+		document.write("raza de gato con mas animales: peterbald" + "<br>");
+		document.write("promedio edad peterbald: " + promedioEdad + "<br>");
+	}
 
-			switch(estadoCivil){
-				case "soltero":
-					contEdadSolteros = contEdadSolteros + edad;
-					cantSolterosHombres++;
-					break;
-			}
-		}
+	if(edadMaxGato != -1){
+		document.write("gato mas viejo: " + gatoMasViejo + "<br>");
+	}
 
-		respuesta = prompt("desea continuar? s/n");
-	}while(respuesta == "s");
-  
-	promedio = contEdadSolteros / cantSolterosHombres;
+	if(edadMaxPerro != -1){
+		document.write("perro mas viejo: " + perroMasViejo + "<br>");
+	}
 
-	document.write("persona con mas temperatura: " + nombreTemperaturaMax + "<br>");
-	document.write("cantidad de mayores viudos: " + mayoresViudos + "<br>");
-	document.write("cantidad de hombres solteros o viudos: " + cantHombresSoV + "<br>");
-	document.write("cantidad de ancianos con temperatura mayor a 38: " + cantAncianosTempAlta + "<br>");
-	document.write("promedio de edad entre los hombres solteros: " + promedio.toFixed(2));
+	if(edadMaxPajaro != -1){
+		document.write("pajaro mas viejo: " + pajaroMasViejo + "<br>");
+	}
 
+	if(edadMaxOtro != -1){
+		document.write("otro mas viejo: " + otroMasViejo + "<br>");
+	}
+
+	
 }
