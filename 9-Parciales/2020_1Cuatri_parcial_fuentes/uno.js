@@ -1,142 +1,124 @@
-/*nicolas cristaldo simil parcial 1
-Realizar el algoritmo que permita ingresar 5 paises:
-el continente (validar entre america , asia , europa ,africa y oceania)
-el nombre del país,
-cantidad de habitantes en millones entre 1 y 7000 (validar)
-el nivel de pobresa entre (pobre, rico , muy rico) en europa no hay paises pobre(validar) 
-la temperaruta mínima que se registra en su territorio(entre -50 y 50) 
-a)La cantidad de temperaturas pares.
-b)la cantidad de temperaturas impares de europa
-c)El nombre del pais con menos habitantes
-d)la cantidad de paises que superan los 40 grados.
-e)la cantidad de paises de america que tienen menos de 0 grados .
-f)el promedio de habitantes entre los paises ingresados .
-g)el promedio de habitantes entre los paises que superan los 40 grados    
-H) la temperatura mínima ingresada, y nombre del pais que registro esa temperatura.
-i) que continente tiene mas habitantes.
+/*nicolas cristaldo simil parcial 7
+Ingrese nombre , sexo , edad (validar que si es mujer debe ser adolescente
+y si el hombre debe ser niño), altura (validar), temperatura corporal(validar)
+Necesitamos saber:
+  a)el nombre y el sexo de la persona con mas temperatura,
+  b)de las mujeres el nombre de la mas joven ,
+  c)de los hombre el nombre del mas bajito,
+  ... solo si los hay
+  d)el promedio de edad entre los hombres,
+  e)el promedio de edad entre las mujeres,
+  f)la cantidad de personas que miden mas de 1,60 metros,  
+  g)el porcentaje de mujeres sobre el total de personas de mas de 1,60 mts.
 */
 function mostrar()
 {
 	let nombre;
-	let i;
-	let continente;
-	let habitantes;
-	let pobreza;
-	let cantTemperaturasPar = 0;
-	let habitantesMin = 10000;
-	let nombrePaisMenosHab;
-	let cantTemperaturasImparesEu = 0;
-	let paisesMasCalurosos = 0;
-	let paisesAmericaMasFrios = 0;
-	let promedioTotalHabitantes;
-	let contHabitantes = 0;
-	let promedioPaisesCalurosos;
-	let contHabPaisesCalurosos = 0;
-	let tempMinima = 100;
-	let paisMasFrio;
-	let contHabAmerica = 0;
-	let contHabOceania = 0;
-	let contHabAsia = 0;
-	let contHabEuropa  = 0;
-	let contHabAfrica = 0;
+	let sexo;
+	let edad;
+	let altura;
+	let temperatura;
+	let mayorTemperatura = 0;
+	let nombreMayorTemperatura;
+	let sexoMayorTemperatura;
+	let masJoven = 500;
+	let nombreMasJoven;
+	let masBajo = 500;
+	let nombreMasBajo;
+	let cantHombres = 0;
+	let cantMujeres = 0;
+	let contEdadHombres = 0;
+	let contEdadMujeres = 0;
+	let promedioEdadHombres;
+	let promedioEdadMujeres;
+	let cantPersonasAltas = 0;
+	let cantMujeresAltas = 0;
+	let porcentajeTotalMujeres;
+	let respuesta;
 
-	for(i = 0; i < 5; i++){
-		do{
-			continente = prompt("ingrese el continente");
-		}while(!(continente == "africa" || continente == "america" || continente == "asia" || continente == "oceania" || continente == "europa"));
-
-		do{
-			nombre = prompt("ingrese el pais");
+	do{
+		do{  
+			nombre = prompt("ingrese su nombre");
 		}while(isNaN(nombre) == false);
 
 		do{
-			habitantes = parseInt(prompt("ingrese la cantidad de habitantes (en millones)"));
-		}while(isNaN(habitantes) == true || habitantes < 1 || habitantes > 7000);
+			sexo = prompt("ingrese el sexo (f o m )");
+		}while(!(sexo == "f" || sexo == "m"));
+
+		if(sexo == "f"){
+			do{
+				edad = parseInt(prompt("ingrese la edad"));
+			}while(isNaN(edad) == true || edad < 13 || edad > 18);
+		}
+		else{
+			do{
+				edad = parseInt(prompt("ingrese la edad"));
+			}while(isNaN(edad) == true || edad < 3 || edad > 12);
+		}
 
 		do{
-			pobreza = prompt("ingrese el nivel de pobreza (pobre, rico, muy rico)");
-		}while( pobreza == "pobre" && continente == "europa" || !(pobreza == "pobre" || pobreza == "rico" || pobreza == "muy rico"));
+			altura = parseFloat(prompt("ingrese la altura"));
+		}while(isNaN(altura) == true || altura < 30 || altura > 300);
 
 		do{
-			temperatura = parseFloat(prompt("ingrese la temperatura minima que se registra"));
-		}while(isNaN(temperatura) == true || temperatura < -50 || temperatura > 50);
+			temperatura = parseFloat(prompt("ingrese la temperatura"));
+		}while(isNaN(temperatura) == true || temperatura < 30 || temperatura > 44);
 
-		contHabitantes = contHabitantes + habitantes;
-
-		if(temperatura % 2 == 0){
-			cantTemperaturasPar++;
-		}		
-
-		if(habitantes < habitantesMin){
-			habitantesMin = habitantes;
-			nombrePaisMenosHab = nombre;
+		if(mayorTemperatura < temperatura){
+			mayorTemperatura = temperatura;
+			nombreMayorTemperatura = nombre;
+			sexoMayorTemperatura = sexo;
 		}
 
-		if(temperatura >= 40){
-			paisesMasCalurosos++;
-			contHabPaisesCalurosos = contHabPaisesCalurosos + habitantes;
-		}
+		switch(sexo){
+			case "f":
+				cantMujeres++;
+				contEdadMujeres = contEdadMujeres + edad;
 
-		if(temperatura < tempMinima){
-			tempMinima = temperatura;
-			paisMasFrio = nombre;
-		}
-
-		switch(continente){
-			case "europa":
-				contHabEuropa = contHabEuropa + habitantes;
-
-				if(temperatura % 2 != 0){
-					cantTemperaturasImparesEu++;
-				}	
-				break;
-			case "america":
-				contHabAmerica = contHabAmerica + habitantes;
-				
-				if(temperatura < 0){
-					paisesAmericaMasFrios++;
+				if(edad < masJoven){
+					masJoven = edad;
+					nombreMasJoven = nombre;
 				}
 				break;
-			case "asia":
-				contHabAsia = contHabAsia + habitantes;
-				break;
-			case "africa":
-				contHabAfrica = contHabAfrica + habitantes;
-				break;
 			default:
-				contHabOceania = contHabOceania + habitantes;
+				cantHombres++;
+				contEdadHombres = contEdadHombres + edad;
+
+				if(altura < masBajo){
+					masBajo = altura;
+					nombreMasBajo = nombre;
+				}
 				break;
 		}
 
+		if(altura > 160){
+			cantPersonasAltas++;
+
+			if(sexo == "f"){
+				cantMujeresAltas++;
+			}
+		}
+
+		respuesta = prompt("desea continuar? s/n");
+	}while(respuesta == "s");
+
+	porcentajeTotalMujeres = (cantMujeresAltas * 100) / cantPersonasAltas;
+
+	document.write("Nombre de la persona con mas temperatura: " + nombreMayorTemperatura + "<br>");
+	document.write("Sexo de la persona con mas temperatura: " + sexoMayorTemperatura + "<br>");
+
+	if(cantMujeres != 0){
+		promedioEdadMujeres = contEdadMujeres / cantMujeres;
+		document.write("Mujer mas joven: " + nombreMasJoven + "<br>");
+		document.write("Promedio de edad de las mujeres: " + promedioEdadMujeres.toFixed(2) + "<br>");
 	}
 
-	promedioTotalHabitantes = contHabitantes / 5;
-	promedioPaisesCalurosos = contHabPaisesCalurosos / paisesMasCalurosos;
-
-	if(contHabAfrica > contHabOceania && contHabAfrica > contHabAsia && contHabAfrica > contHabAmerica && contHabAfrica > contHabEuropa){
-		document.write("continente mas poblado: africa" + "<br>");
-	}
-	else if(contHabEuropa > contHabAmerica && contHabEuropa > contHabOceania && contHabEuropa > contHabAsia){
-		document.write("continente mas poblado: europa" + "<br>");
-	} 
-	else if(contHabAsia > contHabOceania && contHabAsia > contHabAmerica){
-		document.write("continente mas poblado: asia" + "<br>");
-	}
-	else if(contHabAmerica > contHabOceania){
-		document.write("continente mas poblado: america" + "<br>");
-	}
-	else{
-		document.write("continente mas poblado: oceania" + "<br>");
+	if(cantHombres != 0){
+		promedioEdadHombres = contEdadHombres / cantHombres;
+		document.write("Hombre mas bajo: " + nombreMasBajo + "<br>");
+		document.write("Promedio de edad de los hombres: " + promedioEdadHombres.toFixed(2) + "<br>");
 	}
 
-	document.write("cantidad de temperaturas pares: " + cantTemperaturasPar + "<br>");
-	document.write("cantidad de temperaturas impares en europa: " + cantTemperaturasImparesEu + "<br>");
-	document.write("pais con menos habitantes: " + nombrePaisMenosHab + "<br>");
-	document.write("paises que superan los 40°: " + paisesMasCalurosos + "<br>");
-	document.write("cantidad de paises de america con menos de 0°: " + paisesAmericaMasFrios + "<br>");
-	document.write("promedio de habitantes: " + promedioTotalHabitantes.toFixed(2) + "<br>");
-	document.write("promedio de habitantes en paises con mas de 40°: " + promedioPaisesCalurosos.toFixed(2) + "<br>");
-	document.write("temperatura minima ingresada: " + tempMinima + "<br>");
-	document.write("pais con la temperatura mas baja: " + paisMasFrio + "<br>");
-
+	document.write("cantidad de personas con mas de 1.60 mts: " + cantPersonasAltas + "<br>");
+	document.write("Porcentaje de mujeres sobre el total de personas de mas de 1.60 mts: " + porcentajeTotalMujeres.toFixed(2) + "% <br>");
 }
